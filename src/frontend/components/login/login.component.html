@@ -1,3 +1,5 @@
+<!-- Login Form -->
+
 <div class="flex justify-content-center align-items-center min-h-screen">
   <p-card header="Login" [style]="{ width: '400px' }">
     <form (ngSubmit)="onSubmit()" #signInForm="ngForm">
@@ -51,7 +53,8 @@
       ></p-button>
       <div class="mt-2">Not a member? <a routerLink="/signup">Register</a></div>
       <div class="mt-2">
-        Forgot your password? <a routerLink="/forgot-password">Reset Password</a>
+        Forgot your password?
+        <a routerLink="/forgot-password">Reset Password</a>
       </div>
     </form>
   </p-card>

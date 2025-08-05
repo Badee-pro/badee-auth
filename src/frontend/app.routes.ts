@@ -4,8 +4,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-// import { authGuard } from './guards/auth.guard';
 
+// Define the application routes
 export const routes: Routes = [
   { path: 'signin', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },

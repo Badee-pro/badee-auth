@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { RegisterPostData, User } from '../interfaces/auth';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -18,6 +17,7 @@ interface AuthResponse {
 export class AuthService {
   constructor(private http: HttpClient) {}
 
+  // Sign up a new user service
   signUp(data: {
     fullName: string;
     email: string;
@@ -26,17 +26,23 @@ export class AuthService {
     return this.http.post(`${environment.apiBaseUrl}/signup`, data);
   }
 
+  // Sign in an existing user service
   signIn(data: { email: string; password: string }): Observable<any> {
     return this.http.post(`${environment.apiBaseUrl}/signin`, data);
   }
 
+  // Forgot password service
   forgotPassword(email: string): Observable<any> {
     return this.http.post(`${environment.apiBaseUrl}/forgot-password`, {
       email,
     });
   }
 
+  // Reset password service
   resetPassword(token: string, password: string) {
-    return this.http.post(`${environment.apiBaseUrl}/reset-password`, { token, password });
+    return this.http.post(`${environment.apiBaseUrl}/reset-password`, {
+      token,
+      password,
+    });
   }
 }

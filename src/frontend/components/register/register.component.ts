@@ -36,6 +36,7 @@ export class RegisterComponent {
   private registerService = inject(AuthService);
   private messageService = inject(MessageService);
   private router = inject(Router);
+  // Reactive form for registration
   registerForm = new FormGroup(
     {
       fullName: new FormControl('', [Validators.required]),
@@ -51,6 +52,7 @@ export class RegisterComponent {
     }
   );
 
+  // Handle form submission
   onRegister() {
     const userCredentials = { ...this.registerForm.value };
     delete userCredentials.confirmPassword;
@@ -76,6 +78,7 @@ export class RegisterComponent {
     });
   }
 
+  // Getters for form controls
   get fullName() {
     return this.registerForm.controls['fullName'];
   }

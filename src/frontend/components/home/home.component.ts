@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
     this.loadProtectedData();
   }
 
+  // Load user profile information
   loadUserProfile() {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit {
       return;
     }
 
+    // Fetch user profile from backend
     this.http
       .get<{ user: { fullName: string; email: string } }>(
         `${environment.apiBaseUrl}/profile`,
@@ -57,12 +59,14 @@ export class HomeComponent implements OnInit {
       );
   }
 
+  // Load protected data from backend
   loadProtectedData() {
     const token = localStorage.getItem('token');
     if (!token) {
       return;
     }
 
+    // Fetch protected data from backend
     this.http
       .get<any[]>(`${environment.apiBaseUrl}/protected-data`, {
         headers: {
@@ -79,6 +83,7 @@ export class HomeComponent implements OnInit {
       );
   }
 
+  // Logout user
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/signin']);

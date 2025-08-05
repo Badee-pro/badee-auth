@@ -63,6 +63,7 @@ export class UserService {
     return null;
   }
 
+  // Get protected data from the backend
   getProtectedData(): Observable<any[]> {
     const token = localStorage.getItem('token');
     return this.http.get<any[]>(`${environment.apiBaseUrl}/protected-data`, {

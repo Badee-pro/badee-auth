@@ -25,12 +25,14 @@ export class ForgotPasswordComponent {
   private messageService = inject(MessageService);
   private router = inject(Router);
 
+  // Handle form submission
   onSubmit() {
     if (!this.email) {
       this.errorMessage = 'Please enter your email.';
       return;
     }
 
+    // Send POST request to backend
     this.http
       .post(`${environment.apiBaseUrl}/forgot-password`, { email: this.email })
       .subscribe({
@@ -38,7 +40,6 @@ export class ForgotPasswordComponent {
           this.successMessage =
             'If your email exists in our system, a reset link has been sent.';
           this.errorMessage = '';
-          // Optional: redirect after some delay
           setTimeout(() => this.router.navigate(['/signin']), 1000);
         },
         error: (err) => {

@@ -27,7 +27,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  // Component properties
   email = '';
   password = '';
   errorMessage = '';
@@ -37,6 +36,8 @@ export class LoginComponent {
 
   private authService = inject(AuthService);
   private messageService = inject(MessageService);
+
+  // Handle form submission
   onSubmit() {
     if (!this.email || !this.password) {
       this.errorMessage = 'Please fill in all fields.';
@@ -48,9 +49,9 @@ export class LoginComponent {
       password: this.password,
     };
 
+    // Call the authentication service
     this.authService.signIn(userCredentials).subscribe({
       next: (response: any) => {
-        // Assume the token is in response.token (or response.accessToken, adjust accordingly)
         const token = response.token || response.accessToken;
         if (token) {
           localStorage.setItem('token', token);

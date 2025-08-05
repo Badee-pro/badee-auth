@@ -57,10 +57,12 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
+  // Handle form submission
   onSubmit() {
     this.error = '';
     this.success = '';
 
+    // Validate form
     if (this.form.invalid) {
       this.error = 'Please fill all fields correctly.';
       return;
@@ -81,6 +83,7 @@ export class ResetPasswordComponent implements OnInit {
       password: this.form.value.password,
     };
 
+    // Send POST request to backend
     this.http
       .post<{ message: string }>(
         `${environment.apiBaseUrl}/reset-password`,
@@ -91,8 +94,6 @@ export class ResetPasswordComponent implements OnInit {
           this.success = res.message || 'Password has been reset successfully.';
           this.error = '';
           this.form.reset();
-
-          // Show success message, then redirect after 3 seconds
           setTimeout(() => {
             this.router.navigate(['signin']);
           }, 1000);

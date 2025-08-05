@@ -1,3 +1,4 @@
+// Data structure for registration POST request
 export interface RegisterPostData {
   fullName: string;
   email: string;
