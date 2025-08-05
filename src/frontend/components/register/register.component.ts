@@ -13,13 +13,16 @@ import { PasswordModule } from 'primeng/password';
 import { passwordMismatchValidator } from '../../shared/password-mismatch.directive';
 import { AuthService } from '../../services/auth.service';
 import { RegisterPostData } from '../../interfaces/auth';
+import { User } from '../../interfaces/auth';
 import { MessageService } from 'primeng/api';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    CommonModule,
     CardModule,
     InputTextModule,
     PasswordModule,
@@ -49,24 +52,25 @@ export class RegisterComponent {
   );
 
   onRegister() {
-    const postData = { ...this.registerForm.value };
-    delete postData.confirmPassword;
-    this.registerService.registerUser(postData as RegisterPostData).subscribe({
+    const userCredentials = { ...this.registerForm.value };
+    delete userCredentials.confirmPassword;
+    this.registerService.signUp(userCredentials as RegisterPostData).subscribe({
       next: (response) => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
           detail: 'Registered successfully',
         });
-        this.router.navigate(['login']);
+        this.router.navigate(['signin']);
         console.log(response);
       },
       error: (err) => {
+        const errorMessage = err?.error?.message || 'Something went wrong';
         console.log(err);
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Something went wrong',
+          detail: errorMessage,
         });
       },
     });

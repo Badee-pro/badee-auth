@@ -4,3 +4,51 @@ body {
   height: 100%;
   margin: 0;
 }
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* space between cards */
+  justify-content: center; /* center cards horizontally */
+}
+
+.custom-card {
+  flex: 0 0 180px; /* fixed width cards, no grow, no shrink */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.custom-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.p-card-image {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.p-card-body {
+  padding: 0.8rem 1rem;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #2a9d8f;
+}
+
+h3.p-text-center {
+  text-align: center; /* horizontal center */
+  display: block;
+  width: fit-content; /* shrink to fit content */
+  margin-left: auto;
+  margin-right: auto;
+}
